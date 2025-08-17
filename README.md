@@ -95,12 +95,14 @@ This application intentionally contains the following vulnerabilities:
 - Modern web browser
 - Basic understanding of web security concepts
 
-## 🚀 Installation
+## 🚀 Installation & Deployment
+
+### Option 1: Local Development
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/vulnerable-website.git
-   cd vulnerable-website/project
+   git clone https://github.com/Ranjankumar90/vulnerable_website.git
+   cd vulnerable_website/project
    ```
 
 2. **Install dependencies**
@@ -115,6 +117,32 @@ This application intentionally contains the following vulnerabilities:
 
 4. **Open your browser**
    Navigate to `http://localhost:5173` (or the URL shown in your terminal)
+
+### Option 2: GitHub Pages Deployment (Recommended)
+
+Your application is automatically deployed to GitHub Pages! 
+
+🌐 **Live Demo**: [https://ranjankumar90.github.io/vulnerable_website/](https://ranjankumar90.github.io/vulnerable_website/)
+
+**To enable GitHub Pages manually:**
+1. Go to your repository: [https://github.com/Ranjankumar90/vulnerable_website](https://github.com/Ranjankumar90/vulnerable_website)
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section
+4. Under **Source**, select **Deploy from a branch**
+5. Choose **gh-pages** branch
+6. Click **Save**
+
+### Option 3: Manual Deployment
+
+1. **Build the project**
+   ```bash
+   cd project
+   npm install
+   npm run build
+   ```
+
+2. **Deploy to any static hosting service** (Netlify, Vercel, etc.)
+   - Upload the contents of `project/dist/` folder
 
 ## 💻 Usage
 

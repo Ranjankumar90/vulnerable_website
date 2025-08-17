@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnBlog - Vulnerable Web Application</title>
+  <link rel="stylesheet" crossorigin href="/assets/index-5apzJ2Je.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔓 VulnBlog</h1>
+            <p class="subtitle">A Deliberately Vulnerable Web Application for Security Testing</p>
+            <div class="warning-banner">
+                ⚠️ WARNING: This application contains intentional security vulnerabilities for educational purposes only!
+            </div>
+        </header>
+
+        <nav class="nav">
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('login')">Login</a>
+            <a href="#" onclick="showSection('admin')">Admin Panel</a>
+            <a href="#" onclick="showSection('search')">Search</a>
+            <a href="#" onclick="showSection('upload')">File Upload</a>
+            <a href="#" onclick="showSection('profile')">Profile</a>
+        </nav>
+
+        <main class="main">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <h2>Welcome to VulnBlog</h2>
+                <div class="vulnerability-info">
+                    <h3>🎯 Vulnerabilities Present in This Application:</h3>
+                    <ul class="vuln-list">
+                        <li><span class="vuln-number">1</span> Broken Access Control - Direct object references, missing authorization</li>
+                        <li><span class="vuln-number">2</span> Cryptographic Failures - Weak password hashing, plain text storage</li>
+                        <li><span class="vuln-number">3</span> Injection - SQL injection, XSS vulnerabilities</li>
+                        <li><span class="vuln-number">4</span> Insecure Design - Poor security architecture</li>
+                        <li><span class="vuln-number">5</span> Security Misconfiguration - Default credentials, verbose errors</li>
+                        <li><span class="vuln-number">6</span> Vulnerable Components - Outdated libraries (simulated)</li>
+                        <li><span class="vuln-number">7</span> Authentication Failures - Weak session management</li>
+                        <li><span class="vuln-number">8</span> Data Integrity Failures - No input validation</li>
+                        <li><span class="vuln-number">9</span> Logging Failures - No security logging</li>
+                        <li><span class="vuln-number">10</span> SSRF - Server-side request forgery</li>
+                    </ul>
+                </div>
+
+                <div class="blog-posts">
+                    <h3>Recent Blog Posts</h3>
+                    <div class="post">
+                        <h4>My First Post</h4>
+                        <p>Welcome to my blog! This is a test post.</p>
+                        <small>Posted by: admin | <a href="#" onclick="viewPost(1)">View Comments</a></small>
+                    </div>
+                    <div class="post">
+                        <h4>Security Best Practices</h4>
+                        <p>Here are some security tips... (ironically posted on a vulnerable site)</p>
+                        <small>Posted by: user123 | <a href="#" onclick="viewPost(2)">View Comments</a></small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Login Section (Vuln #2, #7) -->
+            <section id="login" class="section">
+                <h2>Login</h2>
+                <div class="form-container">
+                    <form id="loginForm" onsubmit="return handleLogin(event)">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                    <div class="login-hints">
+                        <p><strong>Test Credentials (Vuln #5 - Default Credentials):</strong></p>
+                        <p>Username: admin | Password: admin</p>
+                        <p>Username: guest | Password: guest</p>
+                        <p><em>Try SQL injection: admin' OR '1'='1</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Panel (Vuln #1) -->
+            <section id="admin" class="section">
+                <h2>Admin Panel</h2>
+                <div class="admin-content">
+                    <p class="access-warning">⚠️ This page should require admin privileges (Broken Access Control)</p>
+                    <div class="admin-functions">
+                        <h3>User Management</h3>
+                        <div class="user-list">
+                            <div class="user-item">
+                                <span>User ID: 1 - admin</span>
+                                <a href="#" onclick="viewUserProfile(1)">View Profile</a>
+                                <a href="#" onclick="deleteUser(1)">Delete</a>
+                            </div>
+                            <div class="user-item">
+                                <span>User ID: 2 - guest</span>
+                                <a href="#" onclick="viewUserProfile(2)">View Profile</a>
+                                <a href="#" onclick="deleteUser(2)">Delete</a>
+                            </div>
+                            <div class="user-item">
+                                <span>User ID: 3 - john_doe</span>
+                                <a href="#" onclick="viewUserProfile(3)">View Profile</a>
+                                <a href="#" onclick="deleteUser(3)">Delete</a>
+                            </div>
+                        </div>
+                        
+                        <h3>System Information</h3>
+                        <div class="system-info">
+                            <p><strong>Database:</strong> MySQL 5.7.0 (Outdated - Vuln #6)</p>
+                            <p><strong>PHP Version:</strong> 7.2.0 (Outdated - Vuln #6)</p>
+                            <p><strong>Debug Mode:</strong> Enabled (Vuln #5)</p>
+                            <p><strong>Error Reporting:</strong> Full (Vuln #5)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Section (Vuln #3) -->
+            <section id="search" class="section">
+                <h2>Search Posts</h2>
+                <div class="search-container">
+                    <form onsubmit="return handleSearch(event)">
+                        <div class="form-group">
+                            <label for="searchQuery">Search Query:</label>
+                            <input type="text" id="searchQuery" name="query" placeholder="Enter search terms...">
+                        </div>
+                        <button type="submit">Search</button>
+                    </form>
+                    <div class="search-hints">
+                        <p><strong>XSS Test Payloads:</strong></p>
+                        <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code><br>
+                        <code>&lt;img src=x onerror=alert('XSS')&gt;</code>
+                        <p><strong>SQL Injection Test:</strong></p>
+                        <code>' UNION SELECT username, password FROM users--</code>
+                    </div>
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+            </section>
+
+            <!-- File Upload Section (Vuln #8) -->
+            <section id="upload" class="section">
+                <h2>File Upload</h2>
+                <div class="upload-container">
+                    <form onsubmit="return handleUpload(event)">
+                        <div class="form-group">
+                            <label for="fileUpload">Upload File:</label>
+                            <input type="file" id="fileUpload" name="file">
+                        </div>
+                        <div class="form-group">
+                            <label for="fileUrl">Or Enter File URL (SSRF Vuln #10):</label>
+                            <input type="url" id="fileUrl" name="url" placeholder="http://example.com/file.txt">
+                        </div>
+                        <button type="submit">Upload</button>
+                    </form>
+                    <div class="upload-hints">
+                        <p><strong>File Upload Vulnerabilities:</strong></p>
+                        <p>• No file type validation</p>
+                        <p>• No file size limits</p>
+                        <p>• Try uploading: .php, .jsp, .exe files</p>
+                        <p><strong>SSRF Test URLs:</strong></p>
+                        <code>http://localhost:8080/admin</code><br>
+                        <code>file:///etc/passwd</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section (Vuln #1, #8) -->
+            <section id="profile" class="section">
+                <h2>User Profile</h2>
+                <div class="profile-container">
+                    <form onsubmit="return handleProfileUpdate(event)">
+                        <div class="form-group">
+                            <label for="profileUserId">User ID:</label>
+                            <input type="number" id="profileUserId" name="userId" value="1" readonly>
+                            <small>Try changing this to access other users' profiles (IDOR)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileName">Name:</label>
+                            <input type="text" id="profileName" name="name" value="Administrator">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileEmail">Email:</label>
+                            <input type="email" id="profileEmail" name="email" value="admin@vulnblog.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileBio">Bio:</label>
+                            <textarea id="profileBio" name="bio" rows="4">System Administrator</textarea>
+                        </div>
+                        <button type="submit">Update Profile</button>
+                    </form>
+                    
+                    <div class="profile-actions">
+                        <h3>Profile Actions</h3>
+                        <button onclick="exportProfile()">Export Profile Data</button>
+                        <button onclick="changePassword()">Change Password</button>
+                        <button onclick="viewLoginHistory()">View Login History</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>🔓 VulnBlog v1.0 - Deliberately Vulnerable Web Application</p>
+            <p>Created for educational and security testing purposes only</p>
+            <div class="creator-info">
+                <h3>Created by: Ranjan Kumar</h3>
+                <p><strong>📧 Email:</strong> ranjankrmth143@gmail.com</p>
+                <p><strong>📱 Mobile:</strong> +91 9504076357</p>
+                <p><em>Cybersecurity Student & Ethical Hacker</em></p>
+            </div>
+            <div class="footer-info">
+                <p><strong>Session ID:</strong> <span id="sessionId">ABC123DEF456</span> (Predictable Session IDs - Vuln #7)</p>
+                <p><strong>Debug Info:</strong> No logging enabled (Vuln #9)</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
